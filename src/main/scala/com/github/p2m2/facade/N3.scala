@@ -3,9 +3,13 @@
  */
 package com.github.p2m2.facade
 
+import com.github.p2m2.facade.N3FormatOption.N3FormatOption
+import io.scalajs.nodejs.fs.{ReadStream, WriteStream}
+import scala.scalajs.js.JSConverters._
+import scala.language.implicitConversions
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import scala.language.implicitConversions
+import scala.scalajs.js.|
 
 //http://rdf.js.org/data-model-spec/
 
@@ -15,6 +19,9 @@ object N3 extends js.Object {
   type Parser = N3Parser
   type Writer = N3Writer
   type Store = N3Store
+  type StreamParser =  N3StreamParser
+  type StreamWriter =  N3StreamWriter
+  type Options = N3Options
 }
 
 @js.native
@@ -26,15 +33,47 @@ object DataFactory extends js.Object {
   def defaultGraph() : DefaultGraph = js.native
 }
 
+object N3FormatOption extends Enumeration {
+  type N3FormatOption = Value
+  val TriG, `N-Quads`, N3, Turtle, `N-Triples`, `application/trig` = Value
+}
+
+trait N3Options extends js.Object {
+  val baseIRI    : js.UndefOr[String] = js.undefined
+  val format     : js.UndefOr[String] = js.undefined
+  val end        : js.UndefOr[Boolean] = js.undefined
+  val prefixes   : js.UndefOr[js.Object] = js.undefined
+ }
+
+object N3Options {
+  def apply(
+             baseIRI: js.UndefOr[String] = js.undefined,
+             format: js.UndefOr[N3FormatOption] = js.undefined,
+             end:js.UndefOr[Boolean] = js.undefined,
+             prefixes: Map[String,String] = Map(),
+           ): N3Options = js.Dynamic.literal(
+    baseIRI = baseIRI,
+    format = format match {
+      case _ : N3FormatOption => format.toString
+      case _ => js.undefined
+    },
+    end = end,
+    prefixes = prefixes match {
+      case m : Map[String,String] => m.toJSDictionary
+      case _ => js.undefined
+    }
+  ).asInstanceOf[N3Options]
+}
+
 @js.native
 @JSImport("n3", "Parser")
-class N3Parser( options : js.Object = null) extends js.Object {
-  def parse( input : String , callback : js.Function3[String  , js.UndefOr[Quad], js.UndefOr[js.Object],Unit] = null) : js.Object = js.native
+class N3Parser( options : N3Options = null) extends js.Object {
+  def parse( input : String | ReadStream , callback : js.Function3[String  , js.UndefOr[Quad], js.UndefOr[js.Object],Unit] = null) : js.Object = js.native
 }
 
 @js.native
 @JSImport("n3", "Writer")
-class N3Writer( options : js.Object = null) extends js.Object {
+class N3Writer(outputStream : WriteStream | N3Options , options : N3Options = null) extends js.Object {
   def addQuad(quad : Quad) : Unit = js.native
 
   def blank() : Term = js.native
@@ -61,8 +100,7 @@ class N3Store( options : js.Object = null) extends js.Object {
 
 
   def getQuads(s: Term, p: Term, o: Term, g: Term=null) : js.Array[Quad] = js.native
-  //todo : return stream
-  //def `match`(s: Term, p: Term, o: Term, g: Term=null) : js.Array[Quad] = js.native
+  def `match`(s: Term, p: Term, o: Term, g: Term=null) : ReadStream = js.native
 
   def countQuads(s: Term, p: Term, o: Term, g: Term=null) : Int = js.native
 
@@ -79,6 +117,10 @@ class N3Store( options : js.Object = null) extends js.Object {
   def forGraphs(callback : js.Function1[Quad,Unit],subject : Term, predicate : Term, `object` : Term) : Quad = js.native
 
 }
+
+class N3StreamParser( options : js.Object = null) extends js.Object
+
+class N3StreamWriter( options : js.Object = null) extends js.Object
 
 @js.native
 @JSImport("n3", "Term")

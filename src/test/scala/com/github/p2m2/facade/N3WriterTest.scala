@@ -10,9 +10,9 @@ object N3WriterTest extends TestSuite {
 
     test("From quads to a string") {
       val writer = new N3.Writer(
-        js.Dynamic.literal(
-          prefixes=js.Dynamic.literal(
-            c="http://example.org/cartoons#"
+        N3Options(
+          prefixes=Map(
+            "c" -> "http://example.org/cartoons#"
           )))
 
       writer.addQuad(DataFactory.namedNode("http: //example.org/cartoons#Tom"),
@@ -29,10 +29,10 @@ object N3WriterTest extends TestSuite {
 
     test("Blank nodes and lists") {
       val writer = new N3.Writer(
-        js.Dynamic.literal(
-          prefixes=js.Dynamic.literal(
-            c="http://example.org/cartoons#",
-            foaf="http://xmlns.com/foaf/0.1/"
+        N3Options(
+          prefixes=Map(
+            "c" -> "http://example.org/cartoons#",
+            "foaf" -> "http://xmlns.com/foaf/0.1/"
           )))
 
       writer.addQuad(

@@ -56,7 +56,20 @@ object N3StoreTest extends TestSuite {
         false
       }, DataFactory.namedNode("http://ex.org/Mickey"), null, null))
 
+      store.`match`(DataFactory.namedNode("http://ex.org/Mickey"), null, null)
+        .on("data",(src : Quad) => {
+          println(" ====== on =========")
+          println(JSON.stringify(src))
+        })
+        .on("end", () => {
+          println("All writes are now complete.");
+        })
+        .on("error", (message : String) => {
+          println("an error occurs : " + message);
+        })
+        .on("prefix", (prefix : String ,iri : String) => {
+          println(s"prefix $prefix = $iri ");
+        })
     }
-
   }
 }
