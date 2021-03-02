@@ -9,9 +9,13 @@ object N3StreamTest extends TestSuite {
   val tests = Tests {
 
     test("stream parser") {
-      val streamParser = new N3.StreamParser()
+      val streamParser = new N3.StreamParser(null)
       val inputStream = Fs.createReadStream("src/test/resources/example.ttl")
-//      val streamWriter = new N3.StreamWriter({ prefixes: { c: 'http://example.org/cartoons#' } });
+      val streamWriter = new N3.StreamWriter(N3Options(prefixes=Map("c"->"http://example.org/cartoons#")))
+
+      //inputStream.pipe(streamParser)
+      //streamParser.pipe(streamWriter)
+      //streamWriter.pipe(process.stdout)
     }
   }
 }

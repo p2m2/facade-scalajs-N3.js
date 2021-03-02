@@ -6,7 +6,7 @@ Scala.js Facade of the [N3.js library](https://github.com/rdfjs/N3.js)
 ## Install
 
 ```
-libraryDependencies += "com.github.p2m2" %%% "N3js-facade" % "1.8.1",
+libraryDependencies += "com.github.p2m2" %%% "n3js" % "1.8.1",
 ```
 
 ## N3.Parser
@@ -89,5 +89,4 @@ val store = new N3.Store();
 ```
 
 Note :
- - Node.js streams is not implemented
  - N3.js Examples are implemented in the [test directory](./src/test)

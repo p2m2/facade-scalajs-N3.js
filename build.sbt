@@ -2,7 +2,7 @@ import sbt.Keys.{testFrameworks, version}
 
 def getPackageSetting = Seq(
   name := "N3js-facade",
-  version :=  "1.8.1",
+  version :=  "1.0.0",
   scalaVersion := "2.13.5",
   organization := "com.github.p2m2",
   organizationName := "p2m2",

@@ -5,6 +5,8 @@ package com.github.p2m2.facade
 
 import com.github.p2m2.facade.N3FormatOption.N3FormatOption
 import io.scalajs.nodejs.fs.{ReadStream, WriteStream}
+import io.scalajs.nodejs.stream
+
 import scala.scalajs.js.JSConverters._
 import scala.language.implicitConversions
 import scala.scalajs.js
@@ -118,9 +120,13 @@ class N3Store( options : js.Object = null) extends js.Object {
 
 }
 
-class N3StreamParser( options : js.Object = null) extends js.Object
+@js.native
+@JSImport("n3", "StreamParser")
+class N3StreamParser( options : N3Options = null) extends stream.Readable
 
-class N3StreamWriter( options : js.Object = null) extends js.Object
+@js.native
+@JSImport("n3", "StreamWriter")
+class N3StreamWriter( options : N3Options = null) extends stream.Writable
 
 @js.native
 @JSImport("n3", "Term")
