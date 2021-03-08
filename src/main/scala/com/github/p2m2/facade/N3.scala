@@ -2,14 +2,13 @@
  * olivier.filangi@inrae.fr - P2M2 Platform - https://github.com/p2m2
  */
 package com.github.p2m2.facade
-
 import com.github.p2m2.facade.N3FormatOption.N3FormatOption
 import io.scalajs.nodejs.fs.{ReadStream, WriteStream}
 import io.scalajs.nodejs.stream
 
-import scala.scalajs.js.JSConverters._
 import scala.language.implicitConversions
 import scala.scalajs.js
+import scala.scalajs.js.JSConverters._
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.|
 
@@ -24,15 +23,6 @@ object N3 extends js.Object {
   type StreamParser =  N3StreamParser
   type StreamWriter =  N3StreamWriter
   type Options = N3Options
-}
-
-@js.native
-@JSImport("n3", "DataFactory")
-object DataFactory extends js.Object {
-  def quad( s: Term, p: Term, o: Term, g: Term = null): Quad = js.native
-  def namedNode( s:String ) : NamedNode = js.native
-  def literal( v:String, p: String="") : Literal = js.native
-  def defaultGraph() : DefaultGraph = js.native
 }
 
 object N3FormatOption extends Enumeration {
@@ -122,53 +112,9 @@ class N3Store( options : js.Object = null) extends js.Object {
 
 @js.native
 @JSImport("n3", "StreamParser")
-class N3StreamParser( options : N3Options = null) extends stream.Readable
+class N3StreamParser( options : N3Options = null) extends stream.Transform
 
 @js.native
 @JSImport("n3", "StreamWriter")
-class N3StreamWriter( options : N3Options = null) extends stream.Writable
+class N3StreamWriter( options : N3Options = null) extends stream.Transform
 
-@js.native
-@JSImport("n3", "Term")
-abstract class Term extends js.Object {
-  val termType : String = js.native
-  val value : String = js.native
-}
-
-@js.native
-@JSImport("n3", "Quad")
-class Quad(val subject : Term, val predicate : Term, val `object` : Term, val graph : Term = null) extends Term
-
-object Quad {
-  implicit def quadrupletNameNode2Quad(quad : (Term,Term,Term,Term)) : Quad = DataFactory.quad(quad._1,quad._2,quad._3,quad._4)
-  implicit def quadrupletNameNode2Quad(quad : (Term,Term,Term)) : Quad = DataFactory.quad(quad._1,quad._2,quad._3,null)
-  implicit def quad2namedNodeQuadruplet(quad : Quad ) : (Term,Term,Term,Term) = (quad.subject,quad.predicate,quad.`object`,quad.graph)
-
-  implicit def quad2String( quad : Quad ) : String =
-    "("+ quad.subject + "," + quad.predicate + quad.`object` + "," + quad.graph + ")"
-  implicit def term2String( term : Term ) : String = term.value +"#"+term.termType
-}
-
-@js.native
-@JSImport("n3", "Triple")
-class Triple(val subject : Term, val predicate : Term, val `object` : Term, val graph : Term = null) extends Term
-
-@js.native
-@JSImport("n3", "BlankNode")
-class BlankNode(val name: String = "") extends Term
-
-@js.native
-@JSImport("n3", "NamedNode")
-class NamedNode(val name: String = "") extends Term
-
-@js.native
-@JSImport("n3", "Literal")
-class Literal(val name: String = "",val datatype : NamedNode, val language : String = "") extends Term
-
-@js.native
-@JSImport("n3", "DefaultGraph")
-class DefaultGraph extends Term
-
-@js.native
-@JSImport("n3", "Variable")
-class Variable extends Term

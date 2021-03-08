@@ -1,8 +1,8 @@
 import sbt.Keys.{testFrameworks, version}
 
 def getPackageSetting = Seq(
-  name := "N3js-facade",
-  version :=  "1.0.0",
+  name := "n3js",
+  version :=  "1.0.1",
   scalaVersion := "2.13.5",
   organization := "com.github.p2m2",
   organizationName := "p2m2",
@@ -69,6 +69,7 @@ lazy val root = project.in(file(".")).
     webpackBundlingMode := BundlingMode.LibraryAndApplication(),
     npmDependencies in Compile ++= Seq("n3" -> "1.8.1"),
     libraryDependencies ++= Seq(
+      "com.github.p2m2" %%% "data-model-rdfjs" % "1.0.0",
       "net.exoego" %%% "scala-js-nodejs-v14" % "0.13.0",
       "com.lihaoyi" %%% "utest" % "0.7.7" % "test"
     ) ,

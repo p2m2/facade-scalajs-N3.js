@@ -16,10 +16,8 @@ object N3ParserTest extends TestSuite {
         DataFactory.namedNode("http://xmlns.com/foaf/0.1/givenName"),
         DataFactory.literal("Ruben", "en"),
         DataFactory.defaultGraph(),
-      );
+      )
 
-      println(myQuad.termType) // Quad
-      println(myQuad.value) // ''
       println(myQuad.subject.value) // https://ruben.verborgh.org/profile/#me
       println(myQuad.`object`.value) // Ruben
       println(myQuad.`object`.asInstanceOf[Literal].datatype.value) // http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
@@ -35,7 +33,7 @@ object N3ParserTest extends TestSuite {
             case prefs => println(JSON.stringify(prefs))
           }
         }
-        case q => println(JSON.stringify(q))
+        case q => println(q)
       }
     }
 

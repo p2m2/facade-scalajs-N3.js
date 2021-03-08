@@ -1,8 +1,6 @@
 package com.github.p2m2.facade
-
+import com.github.p2m2._
 import utest._
-
-import scala.scalajs.js.JSON
 
 object N3StoreTest extends TestSuite {
   val tests = Tests {
@@ -37,7 +35,7 @@ object N3StoreTest extends TestSuite {
       assert( count == 1)
 
       store.forEach((quad: Quad) => {
-        println("forEach -> "+JSON.stringify(quad))
+        println("forEach -> "+quad)
       } , DataFactory.namedNode("http://ex.org/Mickey"), null, null)
 
       assert(store.every((quad: Quad) => {
@@ -59,7 +57,7 @@ object N3StoreTest extends TestSuite {
       store.`match`(DataFactory.namedNode("http://ex.org/Mickey"), null, null)
         .on("data",(src : Quad) => {
           println(" ====== on =========")
-          println(JSON.stringify(src))
+          println(src)
         })
         .on("end", () => {
           println("All writes are now complete.");
