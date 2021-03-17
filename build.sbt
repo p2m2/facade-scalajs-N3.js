@@ -70,7 +70,7 @@ lazy val root = project.in(file(".")).
     npmDependencies in Compile ++= Seq("n3" -> "1.8.1"),
     libraryDependencies ++= Seq(
       "com.github.p2m2" %%% "data-model-rdfjs" % "1.0.0",
-      "net.exoego" %%% "scala-js-nodejs-v14" % "0.13.0",
+      "net.exoego" %%% "scala-js-nodejs-v14" % "0.13.0" % "test",
       "com.lihaoyi" %%% "utest" % "0.7.7" % "test"
     ) ,
     testFrameworks += new TestFramework("utest.runner.Framework")
