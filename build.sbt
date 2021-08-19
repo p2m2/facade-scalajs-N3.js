@@ -1,6 +1,6 @@
 import sbt.Keys.{testFrameworks, version}
 
-lazy val version_n3="1.10.0"
+lazy val version_n3="1.11.1"
 
 def getPackageSetting = Seq(
   name := "n3js",
