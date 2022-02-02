@@ -3,7 +3,6 @@
 [![p2m2](https://circleci.com/gh/p2m2/N3.js-facade.svg?style=shield)](https://app.circleci.com/pipelines/github/p2m2)
 [![codecov](https://codecov.io/gh/p2m2/N3.js-facade/branch/develop/graph/badge.svg)](https://codecov.io/gh/p2m2/discovery)
 
-
 Scala.js Facade of the [N3.js library](https://github.com/rdfjs/N3.js)
 
 ## Install

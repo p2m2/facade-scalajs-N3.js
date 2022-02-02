@@ -24,7 +24,6 @@ workflows:
       - compile:
           context:
             - DOCKER_CONTEXT
-
       - lib:
           requires:
             - compile
@@ -33,7 +32,7 @@ workflows:
 
       - test_coverage:
           requires:
-            - compile
+            - lib
           context:
             - DOCKER_CONTEXT
 
@@ -130,7 +129,7 @@ jobs:
           command: |
             cat /dev/null | sbt clean coverage test coverageReport
             bash <(curl -s https://codecov.io/bash)
-            bash <(curl -Ls https://coverage.codacy.com/get.sh) report
+          #  bash <(curl -Ls https://coverage.codacy.com/get.sh) report
 
       - store_artifacts:
           path: target/test-reports
