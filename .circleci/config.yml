@@ -90,7 +90,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
-          name: Compile - JS
+          name: Compile
           command: cat /dev/null | sbt test:compile
 
   lib:
@@ -123,6 +123,8 @@ jobs:
             - v1-dependencies-{{ checksum "build.sbt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
+      - node/install:
+          node-version: '17.4'
       - run:
           name: Test and Coverage
           command: |
