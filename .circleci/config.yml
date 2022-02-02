@@ -129,7 +129,7 @@ jobs:
             bash <(curl -Ls https://coverage.codacy.com/get.sh) report
 
       - store_artifacts:
-          path: discovery/jvm/target/test-reports
+          path: target/test-reports
 
       #- run:
       #    name: Set Npm token
