@@ -1,12 +1,14 @@
 # N3.js-facade
-[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.5.0.svg)](https://www.scala-js.org)
+[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.6.0.svg)](https://www.scala-js.org)
+[![p2m2](https://circleci.com/gh/p2m2/N3.js-facade.svg?style=shield)](https://app.circleci.com/pipelines/github/p2m2)
+[![codecov](https://codecov.io/gh/p2m2/N3.js-facade/branch/develop/graph/badge.svg)](https://codecov.io/gh/p2m2/discovery)
 
 Scala.js Facade of the [N3.js library](https://github.com/rdfjs/N3.js)
 
 ## Install
 
 ```
-libraryDependencies += "com.github.p2m2" %%% "n3js" % "1.11.1",
+libraryDependencies += "com.github.p2m2" %%% "n3js" % "1.13.0",
 ```
 
 ## N3.Parser

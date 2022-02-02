@@ -75,7 +75,10 @@ lazy val root = project.in(file(".")).
       "net.exoego" %%% "scala-js-nodejs-v14" % "0.14.0" % "test",
       "com.lihaoyi" %%% "utest" % "0.7.11" % "test"
     ) ,
-    testFrameworks += new TestFramework("utest.runner.Framework")
+    testFrameworks += new TestFramework("utest.runner.Framework"),
+    coverageMinimumStmtTotal := 86,
+    coverageFailOnMinimum := false,
+    coverageHighlighting := true,
   )
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
