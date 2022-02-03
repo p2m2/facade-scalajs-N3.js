@@ -52,8 +52,6 @@ workflows:
                 - main
 
       - publish_tag_to_sonatype_stagge_for_release:
-          requires:
-            - test_coverage
           context:
             - DOCKER_CONTEXT
             - CREDENTIAL_CONTEXT
