@@ -4,7 +4,7 @@ lazy val version_n3="1.13.0"
 
 def getPackageSetting = Seq(
   name := "n3js",
-  version := version_n3 ,
+  version := scala.util.Properties.envOrElse("PROG_VERSION", version_n3 ),
   scalaVersion := "2.13.7",
   organization := "com.github.p2m2",
   organizationName := "p2m2",
@@ -14,8 +14,8 @@ def getPackageSetting = Seq(
   description := "Scalajs Facade for N3.js.",
   scmInfo := Some(
     ScmInfo(
-      url("https://github.com/p2m2/N3.js-facade"),
-      "scm:git@github.com:p2m2/N3.js-facade.git"
+      url("https://github.com/p2m2/facade-scalajs-N3.js"),
+      "scm:git@github.com:p2m2/facade-scalajs-N3.js.git"
     )
   ),
   developers := List(
@@ -71,14 +71,14 @@ lazy val root = project.in(file(".")).
     webpackBundlingMode := BundlingMode.LibraryAndApplication(),
     Compile / npmDependencies ++= Seq("n3" -> version_n3),
     libraryDependencies ++= Seq(
-      "com.github.p2m2" %%% "data-model-rdfjs" % "1.0.0",
+      "com.github.p2m2" %%% "data-model-rdfjs" % "1.0.1",
       "net.exoego" %%% "scala-js-nodejs-v14" % "0.14.0" % "test",
       "com.lihaoyi" %%% "utest" % "0.7.11" % "test"
     ) ,
     testFrameworks += new TestFramework("utest.runner.Framework"),
     coverageMinimumStmtTotal := 86,
     coverageFailOnMinimum := false,
-    coverageHighlighting := true,
+    coverageHighlighting := true
   )
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
