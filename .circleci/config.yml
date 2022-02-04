@@ -127,7 +127,7 @@ jobs:
           command: |
             cat /dev/null | sbt clean coverage test coverageReport
             bash <(curl -s https://codecov.io/bash)
-          #  bash <(curl -Ls https://coverage.codacy.com/get.sh) report
+            bash <(curl -Ls https://coverage.codacy.com/get.sh) report
 
       - store_artifacts:
           path: target/test-reports
@@ -152,6 +152,7 @@ jobs:
       - run:
           name: Snapshot publication
           command: |
+            export PROG_VERSION="${CIRCLE_BRANCH}-SNAPSHOT"
             echo "Importing key"
             echo -e "$GPG_KEY" | gpg --import
             sbt publish
@@ -167,8 +168,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
-          name: Snapshot publication
+          name: Release publication
           command: |
+            export PROG_VERSION="${CIRCLE_TAG}"
             echo "Importing key"
             echo -e "$GPG_KEY" | gpg --import
             sbt publish
