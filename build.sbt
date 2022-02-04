@@ -76,7 +76,7 @@ lazy val root = project.in(file(".")).
       "com.lihaoyi" %%% "utest" % "0.7.11" % "test"
     ) ,
     testFrameworks += new TestFramework("utest.runner.Framework"),
-    coverageMinimumStmtTotal := 86,
+    coverageMinimumStmtTotal := 20,
     coverageFailOnMinimum := false,
     coverageHighlighting := true
   )
