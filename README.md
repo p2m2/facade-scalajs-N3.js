@@ -8,7 +8,7 @@ Scala.js Facade of the [N3.js library](https://github.com/rdfjs/N3.js)
 ## Install
 
 ```
-libraryDependencies += "com.github.p2m2" %%% "n3js" % "1.13.0",
+libraryDependencies += "com.github.p2m2" %%% "n3js" % "1.16.3",
 ```
 
 ## N3.Parser

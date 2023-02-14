@@ -1,16 +1,16 @@
 import sbt.Keys.{testFrameworks, version}
 
-lazy val version_n3="1.13.0"
+lazy val version_n3="1.16.3"
 
 def getPackageSetting = Seq(
   name := "n3js",
   version := scala.util.Properties.envOrElse("PROG_VERSION", version_n3 ),
-  scalaVersion := "2.13.7",
+  scalaVersion := "2.13.10",
   organization := "com.github.p2m2",
   organizationName := "p2m2",
   organizationHomepage := Some(url("https://www6.inrae.fr/p2m2")),
   licenses := Seq("MIT License" -> url("http://www.opensource.org/licenses/mit-license.php")),
-  homepage := Some(url("https://github.com/p2m2/N3.js-facade")),
+  homepage := Some(url("https://github.com/p2m2/facade-scalajs-N3.js")),
   description := "Scalajs Facade for N3.js.",
   scmInfo := Some(
     ScmInfo(
@@ -71,9 +71,9 @@ lazy val root = project.in(file(".")).
     webpackBundlingMode := BundlingMode.LibraryAndApplication(),
     Compile / npmDependencies ++= Seq("n3" -> version_n3),
     libraryDependencies ++= Seq(
-      "com.github.p2m2" %%% "data-model-rdfjs" % "1.0.1",
-      "net.exoego" %%% "scala-js-nodejs-v14" % "0.14.0" % "test",
-      "com.lihaoyi" %%% "utest" % "0.7.11" % "test"
+      "com.github.p2m2" %%% "data-model-rdfjs" % "1.0.2",
+      "net.exoego" %%% "scala-js-nodejs-v16" % "0.14.0" % "test",
+      "com.lihaoyi" %%% "utest" % "0.8.1" % "test"
     ) ,
     testFrameworks += new TestFramework("utest.runner.Framework"),
     coverageMinimumStmtTotal := 20,
