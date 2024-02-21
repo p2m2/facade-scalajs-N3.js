@@ -1,7 +1,7 @@
 name: Release
 on:
   push:
-    branches: [master, main]
+    branches: [main,develop]
     tags: ["*"]
 jobs:
   publish:
@@ -15,7 +15,10 @@ jobs:
           distribution: temurin
           java-version: 18
           cache: sbt
-      - run: sbt ci-release
+      - run: |
+          export PROG_VERSION=${GITHUB_REF_NAME} && [[ ${GITHUB_REF_TYPE} = "branch" ]]  && export PROG_VERSION=${GITHUB_REF_NAME}"-SNAPSHOT"
+          echo "VERSION=$PROG_VERSION"
+          sbt ci-release
         env:
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
