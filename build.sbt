@@ -1,6 +1,6 @@
 import sbt.Keys.{testFrameworks, version}
 
-lazy val version_n3="1.16.3"
+lazy val version_n3="1.17.2"
 
 def getPackageSetting = Seq(
   name := "n3js",
@@ -72,8 +72,7 @@ lazy val root = project.in(file(".")).
     Compile / npmDependencies ++= Seq("n3" -> version_n3),
     libraryDependencies ++= Seq(
       "com.github.p2m2" %%% "data-model-rdfjs" % "1.0.2",
-      "net.exoego" %%% "scala-js-nodejs-v16" % "0.14.0" % "test",
-      "com.lihaoyi" %%% "utest" % "0.8.1" % "test"
+      "com.lihaoyi" %%% "utest" % "0.8.2" % "test"
     ) ,
     testFrameworks += new TestFramework("utest.runner.Framework"),
     coverageMinimumStmtTotal := 20,
