@@ -7,6 +7,7 @@ def getPackageSetting = Seq(
   version :=  scala.util.Properties.envOrElse("PROG_VERSION", version_n3 ),
   scalaVersion := "2.13.12",
   versionScheme := Some("early-semver"),
+  publish / skip := true,
   organization := "com.github.p2m2",
   organizationName := "p2m2",
   organizationHomepage := Some(url("https://www6.inrae.fr/p2m2")),
@@ -46,9 +47,7 @@ def getPackageSetting = Seq(
   publishConfiguration := publishConfiguration.value.withOverwrite(true) ,
   publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
   pomIncludeRepository := { _ => false },
-  publishMavenStyle := true,
-  publish / skip := true,
-  publishTo := sonatypePublishTo.value
+  publishMavenStyle := true
 )
 
 lazy val root = project.in(file(".")).
