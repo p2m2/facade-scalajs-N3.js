@@ -47,6 +47,8 @@ def getPackageSetting = Seq(
   publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
   pomIncludeRepository := { _ => false },
   publishMavenStyle := true,
+  publish / skip := true,
+  publishTo := sonatypePublishTo.value
 )
 
 lazy val root = project.in(file(".")).
