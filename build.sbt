@@ -4,8 +4,9 @@ lazy val version_n3="1.17.2"
 
 def getPackageSetting = Seq(
   name := "n3js",
-  version := scala.util.Properties.envOrElse("PROG_VERSION", version_n3 ),
-  scalaVersion := "2.13.10",
+  version :=  scala.util.Properties.envOrElse("PROG_VERSION", version_n3 )+"-SNAPSHOT",
+  scalaVersion := "2.13.12",
+  versionScheme := Some("early-semver"),
   organization := "com.github.p2m2",
   organizationName := "p2m2",
   organizationHomepage := Some(url("https://www6.inrae.fr/p2m2")),
