@@ -138,39 +138,3 @@ jobs:
       #- run:
       #    name: Publish package
       #    command: npm publish
-
-  publish_snapshot:
-    executor: openjdk
-    steps:
-      - checkout
-      - setup_remote_docker
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.sbt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run:
-          name: Snapshot publication
-          command: |
-            export PROG_VERSION="${CIRCLE_BRANCH}-SNAPSHOT"
-            echo "Importing key"
-            echo -e "$GPG_KEY" | gpg --import
-            sbt publish
-
-  publish_tag_to_sonatype_stagge_for_release:
-    executor: openjdk
-    steps:
-      - checkout
-      - setup_remote_docker
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.sbt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run:
-          name: Release publication
-          command: |
-            export PROG_VERSION="${CIRCLE_TAG}"
-            echo "Importing key"
-            echo -e "$GPG_KEY" | gpg --import
-            sbt publish
