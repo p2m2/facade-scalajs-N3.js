@@ -17,7 +17,6 @@ jobs:
           cache: sbt
       - run: |
           PROG_VERSION=${GITHUB_REF_NAME} && [[ ${GITHUB_REF_TYPE} = "branch" ]]  && PROG_VERSION=${GITHUB_REF_NAME}"-SNAPSHOT"
-          echo ${CI_COMMIT_SLUG}
           sbt ci-release
         env:
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
