@@ -17,6 +17,7 @@ jobs:
           cache: sbt
       - run: |
           export PROG_VERSION=${GITHUB_REF_NAME} && [[ ${GITHUB_REF_TYPE} = "branch" ]]  && export PROG_VERSION=${GITHUB_REF_NAME}"-SNAPSHOT"
+          echo "PROG_VERSION=$PROG_VERSION GITHUB_REF_TYPE=${GITHUB_REF_TYPE} GITHUB_REF_NAME=${GITHUB_REF_NAME}"
           echo "VERSION=$PROG_VERSION"
           sbt ci-release
         env:
