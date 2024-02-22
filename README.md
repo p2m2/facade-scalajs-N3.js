@@ -1,9 +1,9 @@
 # facade-scalajs-N3.js
-[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.6.0.svg)](https://www.scala-js.org)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.p2m2/n3js_sjs1_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.p2m2/n3js_sjs1_2.13) <!-- https://github.com/jirutka/maven-badges -->
-[![Coverage Status](https://coveralls.io/repos/github/p2m2/facade-scalajs-N3.js/badge.svg)](https://coveralls.io/github/p2m2/facade-scalajs-N3.js)
+[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.13.0.svg)](https://www.scala-js.org)
+[![Coverage Status](https://coveralls.io/repos/github/p2m2/facade-scalajs-N3.js/badge.svg?version=v1.17.2)](https://coveralls.io/github/p2m2/facade-scalajs-N3.js)
 ![CI](https://github.com/p2m2/facade-scalajs-N3.js/actions/workflows/ci.yml/badge.svg)
 ![Release](https://github.com/p2m2/facade-scalajs-N3.js/actions/workflows/release.yml/badge.svg)
+[![Maven](https://badgen.net/badge/icon/maven?icon=maven&label)](https://search.maven.org/search?q=g:com.github.p2m2)
 
 Scala.js Facade of the [N3.js library](https://github.com/rdfjs/N3.js)
 
